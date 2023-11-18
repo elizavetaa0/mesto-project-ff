@@ -30,3 +30,5 @@ const initialCards = [
       alt_name: 'Пейзаж Байкала'
     },
 ];
+
+export {initialCards};
