@@ -1,22 +1,26 @@
 function openModal(popup) {
   popup.classList.add('popup_is-opened');
-  popup.addEventListener('click', closePopupHandler);
-  document.addEventListener('keydown', closePopupHandler);
+  popup.addEventListener('click', closeByOverlayClick);
+  document.addEventListener('keydown', closeByEscHandler);
 }
 
 function closeModal(popup) {
   popup.classList.remove('popup_is-opened');
-  popup.removeEventListener('click', closePopupHandler);
-  document.removeEventListener('keydown', closePopupHandler);
+  popup.removeEventListener('click', closeByOverlayClick);
+  document.removeEventListener('keydown', closeByEscHandler);
 }
 
-function closePopupHandler(event) {
+function closeByEscHandler(event) {
   if (event.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_is-opened');
     if (openedPopup) {
       closeModal(openedPopup);
     }
-  } else if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close')) {
+  }
+}
+
+function closeByOverlayClick(event) {
+  if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close')) {
     const clickedPopup = event.target.closest('.popup_is-opened');
     if (clickedPopup) {
       closeModal(clickedPopup);
@@ -24,4 +28,4 @@ function closePopupHandler(event) {
   }
 }
 
-export {openModal, closeModal, closePopupHandler};
+export {openModal, closeModal, closeByEscHandler, closeByOverlayClick};

@@ -1,4 +1,3 @@
-
 const cardTemplate = document.querySelector('#card-template').content;
 
 function handleLikeButton(likeButton) {
@@ -10,17 +9,17 @@ function handleLikeButton(likeButton) {
 }
 
 function createCard(name, link, alt_name, deleteCallBackFunc, handleLikeButton, openImagePopupHandler) {
-
   const cardElement = cardTemplate.cloneNode(true);
   const cardItem = cardElement.querySelector('.card');
   const likeButton = cardItem.querySelector('.card__like-button');
   const imgButton = cardItem.querySelector('.card__image');
-
-  cardItem.querySelector('.card__image').src = link;
-  cardItem.querySelector('.card__title').textContent = name;
-  cardItem.querySelector('.card__image').alt = alt_name;
-
   const deleteButton = cardItem.querySelector('.card__delete-button');
+
+  imgButton.src = link;
+  cardItem.querySelector('.card__title').textContent = name;
+  imgButton.alt = alt_name;
+
+
   deleteButton.addEventListener('click', () => {
     deleteCallBackFunc(cardItem);
   });
