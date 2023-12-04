@@ -3,6 +3,22 @@
   justify-content: space-between;
   align-items: center;
   background: #fff;
-  padding: 25px 20px;
+  padding: 20px 20px;
   /*Чтобы по ПЭПЭ отступы снизу-сверху одинаковые            */
+}
+
+.card__description div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.number-of-likes {
+  color: #000;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
 }
