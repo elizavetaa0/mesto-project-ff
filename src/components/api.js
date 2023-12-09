@@ -20,7 +20,6 @@ const handleResponse = (res) => {
 }
 
 //запросы данных о пользователе и карточек 
-
 function getUserData() { 
 return fetch (`${config.baseUrl}/users/me`, { 
   headers: { 
@@ -28,7 +27,6 @@ return fetch (`${config.baseUrl}/users/me`, {
   } 
 }) 
   .then(handleResponse)
-  .catch((error) => console.log('Ошибка при получении данных: ', error)) 
 }
 
 function getCardsData () {
@@ -38,7 +36,6 @@ function getCardsData () {
   }, 
 }) 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при получении данных: ', error))
 }
 
 //постановка/снятие лайка 
@@ -51,7 +48,6 @@ function likeCard(cardId) {
   }) 
 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при постановке лайка: ', error))
 } 
 
 function unlikeCard(cardId) { 
@@ -63,7 +59,6 @@ function unlikeCard(cardId) {
   }) 
 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при снятии лайка: ', error))
 }
 
 //удаление карточки 
@@ -75,7 +70,6 @@ function deleteNewCard(cardId) {
     }, 
   }) 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при удалении карточки: ', error))
 }
 
 //редактирование профиля 
@@ -96,7 +90,6 @@ function editProfile(profileName, profileAbout) {
     .then((getUserData) => { 
     return getUserData; 
   }) 
-    .catch((error) => console.log('Ошибка при изменении данных: ', error)); 
 } 
 
 //добавление новой карточки 
@@ -114,7 +107,6 @@ function addNewCard(cardName, cardLink) {
   }) 
 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при добавлении данных: ', error)); 
 } 
 
 //обновление аватара 
@@ -131,7 +123,6 @@ function updateAvatar (avatarImg) {
   }) 
 
   .then(handleResponse) 
-  .catch((error) => console.log('Ошибка при обновлении данных: ', error)); 
 }
 
 export {getUserData, getCardsData, addNewCard, editProfile, updateAvatar, likeCard, unlikeCard, deleteNewCard}; 

@@ -1,17 +1,8 @@
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
+import {config} from './config.js';
 
 const disableSubmitButton = (buttonElement, config) => {
-  if (buttonElement.classList.contains(config.inactiveButtonClass)) {
-    buttonElement.setAttribute('disabled', true);
-  }
-  else buttonElement.removeAttribute('disabled');
+  buttonElement.setAttribute('disabled', true);
+  buttonElement.classList.add(config.inactiveButtonClass)
 };
 
 const showInputError = (formElement, inputElement, errorMessage, config) => { 
@@ -82,11 +73,11 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, config) => { 
   if (hasInvalidInput(inputList)) { 
-    buttonElement.classList.add(config.inactiveButtonClass);
+    disableSubmitButton(buttonElement, config); 
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
-  disableSubmitButton(buttonElement, config); 
 } 
 
 export { enableValidation, clearValidation, config };

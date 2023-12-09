@@ -4,9 +4,11 @@ import { createCard, handleLikeButton, deleteCard } from './components/card.js';
 
 import { openModal, closeModal } from './components/modal.js'; 
 
-import { enableValidation, clearValidation, config } from './components/validation.js'; 
+import { enableValidation, clearValidation } from './components/validation.js'; 
 
 import {getUserData, getCardsData, updateAvatar, addNewCard, editProfile} from './components/api.js'; 
+
+import {config} from './components/config.js';
 
 const cardList = document.querySelector('.places__list'); 
 const addButton = document.querySelector('.profile__add-button'); 
@@ -28,9 +30,10 @@ const newAvatrForm = document.forms['avatar-edit'];
 const avatarEditButton = document.querySelector('.profile__image'); 
 const avatarUrlInput = document.querySelector('.popup__input_type_avatar');
 
+let userId;
 Promise.all([getUserData(), getCardsData()])
   .then(([userData, cardsData]) => {
-    const userId = userData._id;
+    userId = userData._id;
     document.querySelector('.profile__title').textContent = userData.name;
     document.querySelector('.profile__description').textContent = userData.about;
     document.querySelector('.profile__image').style.backgroundImage = `url(${userData.avatar})`;
@@ -54,11 +57,8 @@ Promise.all([getUserData(), getCardsData()])
   })
   .catch((error) => console.log('Ошибка при загрузке данных: ', error));
 
-function addCard(cardData) { 
-  console.log(cardData);
+function addCard(cardData, userId) { 
   const cardId = cardData._id;
-  const userId = cardData._id;
-  console.log(cardData.owner);
   const ownerId = cardData.owner._id;
   const cardLikes = cardData.likes;
 
@@ -207,4 +207,4 @@ newAvatrForm.addEventListener('submit', submitEditAvatarForm);
 
 enableValidation(config); 
 
-export{openImagePopupHandler, cardList}; 
+export{config}; 
